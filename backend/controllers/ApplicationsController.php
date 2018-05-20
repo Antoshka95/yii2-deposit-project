@@ -30,14 +30,20 @@ class ApplicationsController extends Controller
     }
 
     /**
+     *
+     * Метод, который отображает список всех заявок
+     *
      * Lists all Applications models.
      * @return mixed
      */
     public function actionIndex()
     {
+        // Создаем объект поиска
         $searchModel = new ApplicationsSearch();
+        // Заполняем объект поиска параметрами из запроса для фильтрации
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // Отображаем
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -45,6 +51,9 @@ class ApplicationsController extends Controller
     }
 
     /**
+     *
+     * Метод для отображения страницы одной заявки
+     *
      * Displays a single Applications model.
      * @param integer $id
      * @return mixed
@@ -57,45 +66,10 @@ class ApplicationsController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Applications model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Applications();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
 
     /**
-     * Updates an existing Applications model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
+     * Метод для удаления заявки по ID
+     *
      * Deletes an existing Applications model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -110,6 +84,8 @@ class ApplicationsController extends Controller
     }
 
     /**
+     * Метод для поиска заявки по ID
+     *
      * Finds the Applications model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id

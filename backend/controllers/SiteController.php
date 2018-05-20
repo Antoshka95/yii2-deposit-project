@@ -54,6 +54,8 @@ class SiteController extends Controller
     }
 
     /**
+     *
+     * Метод отображения главной страницы
      * Displays homepage.
      *
      * @return string
@@ -64,22 +66,31 @@ class SiteController extends Controller
     }
 
     /**
+     * Метод авторизации
+     *
      * Login action.
      *
      * @return string
      */
     public function actionLogin()
     {
+        // Если гость
         if (!Yii::$app->user->isGuest) {
+            // Отправляем на домашнюю
             return $this->goHome();
         }
 
+
         $model = new LoginForm();
+        // Если форма не пустая и авторизация успешная, то
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            // Редирект на предыдущую страницу
             return $this->goBack();
         } else {
+            // Иначе очищаем пароль и
             $model->password = '';
 
+            // Показываем форму входа
             return $this->render('login', [
                 'model' => $model,
             ]);
@@ -87,6 +98,8 @@ class SiteController extends Controller
     }
 
     /**
+     * Метод для удаления авторизации
+     *
      * Logout action.
      *
      * @return string
