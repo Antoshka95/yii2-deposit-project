@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'language' => 'ru',
+    'sourceLanguage' => 'ru',
     'name' => 'Contribution bank',
     'components' => [
         'request' => [

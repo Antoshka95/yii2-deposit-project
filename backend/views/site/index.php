@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Contribution bank для менеджера по заявкам';
 ?>
 <div class="site-index">
 
