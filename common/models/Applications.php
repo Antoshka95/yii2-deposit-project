@@ -19,6 +19,10 @@ use yii\helpers\ArrayHelper;
  */
 class Applications extends \yii\db\ActiveRecord
 {
+
+    const DONE_STATUS = 10;
+    const WAIT_STATUS = 20;
+
     /**
      * {@inheritdoc}
      */
@@ -33,9 +37,11 @@ class Applications extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['deposit_type_id', 'first_name', 'last_name', 'phone'], 'required'],
             [['deposit_type_id', 'created_at', 'updated_at'], 'integer'],
             [['amount'], 'number'],
-            [['first_name', 'last_name', 'phone'], 'string', 'max' => 255],
+            [['phone'], 'integer'],
+            [['first_name', 'last_name'], 'string', 'max' => 255],
         ];
     }
 
@@ -54,6 +60,12 @@ class Applications extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Время создания'),
             'updated_at' => Yii::t('app', 'Время обновления'),
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->created_at = time();
+        return true;
     }
 
 }

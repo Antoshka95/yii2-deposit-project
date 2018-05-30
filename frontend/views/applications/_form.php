@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Applications */
@@ -18,12 +19,22 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'deposit_type_id')->dropDownList(\common\models\DepositTypes::getList()) ?>
 
-    <?= $form->field($model, 'amount')->textInput() ?>
+    <?= $form->field($model, 'amount')->widget(MaskedInput::class, [
+        'name' => 'input-33',
+        'clientOptions' => [
+            'alias' =>  'decimal',
+            'groupSeparator' => ',',
+            'autoGroup' => true
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'phone')->widget(MaskedInput::class, [
+        'name' => 'input-1',
+        'mask' => '(999) 999 9999'
+    ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Отправить'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
