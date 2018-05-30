@@ -39,8 +39,8 @@ class Applications extends \yii\db\ActiveRecord
         return [
             [['deposit_type_id', 'first_name', 'last_name', 'phone'], 'required'],
             [['deposit_type_id', 'created_at', 'updated_at'], 'integer'],
-            [['amount'], 'number'],
-            [['phone'], 'integer'],
+            [['amount'], 'string'],
+            [['phone'], 'string'],
             [['first_name', 'last_name'], 'string', 'max' => 255],
         ];
     }
