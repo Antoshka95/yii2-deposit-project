@@ -72,7 +72,10 @@ $("#success").on("click", function() {
             'created_at:date',
             //'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{view} {delete}'
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>
