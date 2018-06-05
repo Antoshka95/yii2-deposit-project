@@ -6,6 +6,7 @@ return [
     ],
     'language' => 'ru',
     'name' => 'Contribution bank',
+    'sourceLanguage' => 'ru',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [

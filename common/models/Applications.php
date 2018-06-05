@@ -37,7 +37,7 @@ class Applications extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['deposit_type_id', 'first_name', 'last_name', 'phone'], 'required'],
+            [['amount', 'deposit_type_id', 'first_name', 'last_name', 'phone'], 'required'],
             [['deposit_type_id', 'created_at', 'updated_at'], 'integer'],
             [['amount'], 'string'],
             [['phone'], 'string'],
