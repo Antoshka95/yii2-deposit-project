@@ -68,6 +68,7 @@ class ApplicationsSearch extends Applications
             'updated_at' => $this->updated_at,
         ]);
 
+        $query->andWhere(['<>', 'status', Applications::DONE_STATUS]);
         $query
             ->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'phone', $this->phone])
