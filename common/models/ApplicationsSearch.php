@@ -46,6 +46,9 @@ class ApplicationsSearch extends Applications
 
         // add conditions that should always apply here
 
+        $query->andWhere(['<>', 'status', Applications::DONE_STATUS]);
+        $query->andWhere(['is', 'status', null]);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -68,7 +71,6 @@ class ApplicationsSearch extends Applications
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andWhere(['<>', 'status', Applications::DONE_STATUS]);
         $query
             ->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'phone', $this->phone])
