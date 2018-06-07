@@ -46,8 +46,11 @@ class ApplicationsSearch extends Applications
 
         // add conditions that should always apply here
 
-        $query->andWhere(['<>', 'status', Applications::DONE_STATUS]);
-        $query->andWhere(['is', 'status', null]);
+        $query->andWhere([
+            'or',
+            ['is', 'status', null],
+            ['<>', 'status', Applications::DONE_STATUS]
+        ]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
